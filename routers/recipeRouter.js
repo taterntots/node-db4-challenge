@@ -2,7 +2,9 @@ const express = require('express');
 const Recipes = require('./recipeModel');
 const router = express.Router();
 
-//gets a list of recipes
+// *****************************************
+// gets a list of recipes
+// *****************************************
 router.get('/', (req, res) => {
   Recipes.getRecipes()
     .then(recipes => {
@@ -13,7 +15,9 @@ router.get('/', (req, res) => {
     })
 })
 
-//get a specific recipe
+// *****************************************
+// get a specific recipe
+// *****************************************
 router.get('/:id/', (req, res) => {
   const { id } = req.params;
 
@@ -30,7 +34,9 @@ router.get('/:id/', (req, res) => {
     })
 })
 
-//
+// *****************************************
+// get a list of all ingredients and quantities for a single recipe
+// *****************************************
 router.get('/:id/shoppinglist', (req, res) => {
   Recipes.getShoppingList(req.params.id)
     .then(recipe => {
@@ -38,6 +44,19 @@ router.get('/:id/shoppinglist', (req, res) => {
     })
     .catch(err => {
       res.status(500).json({ message: 'Failed to get specified ingredients for shopping list' });
+    })
+})
+
+// *****************************************
+// get a correctly ordered list of how to prepare a single recipe
+// *****************************************
+router.get('/:id/instructions', (req, res) => {
+  Recipes.getInstructions(req.params.id)
+    .then(recipe => {
+        res.status(200).json(recipe);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to get specified instructions for the recipe' });
     })
 })
 
