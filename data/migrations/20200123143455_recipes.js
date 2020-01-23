@@ -30,9 +30,7 @@ exports.up = function(knex) {
         // options include CASCADE, SET NULL, DO NOTHING, RESTRICT
 
       tbl.integer('step_number')
-        .increments()
-        .unsigned()
-        .unNullable();
+        .notNullable();
 
       tbl.string('step_description', 255)
         .notNullable();
@@ -61,7 +59,7 @@ exports.up = function(knex) {
       // options include CASCADE, SET NULL, DO NOTHING, RESTRICT
 
       tbl.float('ingredient_quantity')
-        .unNullable();
+        .notNullable();
 
       tbl.string('quantity_units', 255)
         .notNullable();
