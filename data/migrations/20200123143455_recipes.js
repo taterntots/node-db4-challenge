@@ -8,6 +8,7 @@ exports.up = function(knex) {
         .unique()
         .index();
     })
+
     .createTable('ingredients', tbl => {
       tbl.increments();
 
@@ -16,6 +17,7 @@ exports.up = function(knex) {
         .unique()
         .index();
     })
+
     .createTable('steps', tbl => {
       tbl.increments();
 
@@ -35,6 +37,7 @@ exports.up = function(knex) {
       tbl.string('step_description', 255)
         .notNullable();
     })
+    
     .createTable('recipe_ingredients', tbl => {
       tbl.increments();
 
